@@ -41,6 +41,7 @@ function WalletButton() {
   return (
     <Button
       variant="contained"
+      color="secondary"
       onClick={() => (connected ? disconnectWallet() : connectWallet())}
     >
       {buttonText}

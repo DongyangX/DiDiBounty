@@ -40,6 +40,12 @@ function Create() {
       })
       return
     }
+    if (!amount || !huntAmount || !title || !content || !fileHash) {
+      enqueueSnackbar('Pleace enter the info!', {
+        variant: 'warning',
+      })
+      return
+    }
 
     try {
       let amountWei = state.web3.utils.toWei(amount, 'ether')

@@ -98,7 +98,11 @@ function App() {
                       to="/"
                       selected={selectedIndex === 0}
                       onClick={(event) => handleListItemClick(event, 0)}
-                      icon={<StorefrontIcon />}
+                      icon={
+                        <StorefrontIcon
+                          color={selectedIndex === 0 ? 'primary' : ''}
+                        />
+                      }
                       primary="市场"
                     />
                   </ListItem>
@@ -107,7 +111,11 @@ function App() {
                       to="/create"
                       selected={selectedIndex === 1}
                       onClick={(event) => handleListItemClick(event, 1)}
-                      icon={<AddCircleOutlineOutlinedIcon />}
+                      icon={
+                        <AddCircleOutlineOutlinedIcon
+                          color={selectedIndex === 1 ? 'primary' : ''}
+                        />
+                      }
                       primary="发布"
                     />
                   </ListItem>
@@ -116,7 +124,11 @@ function App() {
                       to="/myrelease"
                       selected={selectedIndex === 2}
                       onClick={(event) => handleListItemClick(event, 2)}
-                      icon={<AddReactionIcon />}
+                      icon={
+                        <AddReactionIcon
+                          color={selectedIndex === 2 ? 'primary' : ''}
+                        />
+                      }
                       primary="我发布的"
                     />
                   </ListItem>
