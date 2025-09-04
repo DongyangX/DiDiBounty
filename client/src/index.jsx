@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./styles.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./components/Home.jsx";
-import Create from "./components/Create.jsx";
-import MyRelease from "./components/MyRelease.jsx";
-import Detail from "./components/Detail.jsx";
-import App from "./App.jsx";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './styles.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './components/Home.jsx'
+import Create from './components/Create.jsx'
+import MyRelease from './components/MyRelease.jsx'
+import Detail from './components/Detail.jsx'
+import App from './App.jsx'
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <BrowserRouter>
     <Routes>
@@ -20,4 +20,4 @@ root.render(
       </Route>
     </Routes>
   </BrowserRouter>
-);
+)
