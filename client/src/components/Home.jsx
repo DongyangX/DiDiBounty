@@ -12,9 +12,12 @@ import { IPFS } from '../contexts/EthContext/Ipfs'
 import { useNavigate } from 'react-router-dom'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/system/Stack'
+import { useDispatch } from 'react-redux'
+import { setDetail } from '../store/globalSlice'
 
 function Home() {
   const { state } = useEth()
+  const dispatch = useDispatch()
 
   const [items, setItems] = useState([])
   const [pageSizeTotal, setPageSizeTotal] = useState(1)
@@ -76,7 +79,7 @@ function Home() {
   const navigate = useNavigate()
 
   const toDetail = (obj) => {
-    state.detail = obj
+    dispatch(setDetail(obj))
     navigate('/detail/' + obj.addr)
   }
 

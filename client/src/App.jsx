@@ -74,7 +74,7 @@ function App() {
                   component="div"
                   sx={{ flexGrow: 1 }}
                 >
-                  滴滴悬赏
+                  DiDiBounty
                 </Typography>
                 <WalletButton />
               </Toolbar>
@@ -103,7 +103,7 @@ function App() {
                           color={selectedIndex === 0 ? 'primary' : ''}
                         />
                       }
-                      primary="市场"
+                      primary="Market"
                     />
                   </ListItem>
                   <ListItem key="create" disablePadding>
@@ -116,7 +116,7 @@ function App() {
                           color={selectedIndex === 1 ? 'primary' : ''}
                         />
                       }
-                      primary="发布"
+                      primary="New"
                     />
                   </ListItem>
                   <ListItem key="myRelease" disablePadding>
@@ -129,7 +129,7 @@ function App() {
                           color={selectedIndex === 2 ? 'primary' : ''}
                         />
                       }
-                      primary="我发布的"
+                      primary="MyRelease"
                     />
                   </ListItem>
                 </List>

@@ -23,9 +23,11 @@ import DialogTitle from '@mui/material/DialogTitle'
 import { addToIpfs, IPFS } from '../contexts/EthContext/Ipfs'
 import { useParams } from 'react-router-dom'
 import { enqueueSnackbar } from 'notistack'
+import { useSelector } from 'react-redux'
 
 function Detail() {
   const { state } = useEth()
+  const detail = useSelector((states) => states.global.detail)
 
   const [items, setItems] = useState([])
   const [prove, setProve] = useState('')
@@ -59,7 +61,7 @@ function Detail() {
     }
     // 加载数据
     fetchData()
-    setStatus(state.detail.status)
+    setStatus(detail.status)
   }, [])
 
   const [joinOpen, setJoinOpen] = useState(false)
@@ -188,7 +190,7 @@ function Detail() {
           </Typography>
           <Avatar sx={{ bgcolor: deepOrange[500] }}></Avatar>
           <Typography variant="h6" gutterBottom>
-            {state.detail.addr}
+            {detail.addr}
           </Typography>
           <Typography variant="h6" gutterBottom>
             发布
@@ -200,7 +202,7 @@ function Detail() {
             <Box>
               <img
                 style={{ width: '500px', height: '500px' }}
-                src={state.detail.mainPic}
+                src={detail.mainPic}
                 loading="lazy"
                 alt="主图"
               />
@@ -210,14 +212,14 @@ function Detail() {
           <Grid size={6}>
             <Box>
               <Typography sx={{ color: red[500] }} variant="h3" gutterBottom>
-                {state.detail.targetMoney}ETH
+                {detail.targetMoney}ETH
               </Typography>
 
               <Typography variant="h3" gutterBottom>
-                {state.detail.title}
+                {detail.title}
               </Typography>
               <Typography variant="h6" gutterBottom>
-                {state.detail.content}
+                {detail.content}
               </Typography>
               {status === '0' && (
                 <Button variant="contained" onClick={handleJoinDialogOpen}>
@@ -225,8 +227,7 @@ function Detail() {
                 </Button>
               )}
               <Typography>
-                需要缴纳 {state.detail.joinMoney} ETH
-                参与,全部ETH将会发放给完成者账户
+                需要缴纳 {detail.joinMoney} ETH 参与,全部ETH将会发放给完成者账户
               </Typography>
             </Box>
           </Grid>
