@@ -27,7 +27,10 @@ import { useSelector } from 'react-redux'
 
 function Detail() {
   const { state } = useEth()
-  const detail = useSelector((states) => states.global.detail)
+  // Will show 404 when refresh detail page
+  // const detail = useSelector((states) => states.global.detail)
+
+  const detail = JSON.parse(localStorage.getItem('detail'))
 
   const [items, setItems] = useState([])
   const [prove, setProve] = useState('')
@@ -41,6 +44,10 @@ function Detail() {
       const addr = params.addr
       console.log(addr)
       // const addr = state.detail.addr;
+      if (!state.web3) {
+        return
+      }
+
       const artifact = require('../contracts/Bounty.json')
       const { abi } = artifact
       const bc = new state.web3.eth.Contract(abi, addr)
@@ -62,7 +69,7 @@ function Detail() {
     // 加载数据
     fetchData()
     setStatus(detail.status)
-  }, [])
+  }, [state.accounts])
 
   const [joinOpen, setJoinOpen] = useState(false)
   const [finishOpen, setFinishOpen] = useState(false)

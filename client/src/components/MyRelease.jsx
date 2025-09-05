@@ -80,7 +80,7 @@ function MyRelease() {
   const navigate = useNavigate()
 
   const toDetail = (obj) => {
-    state.detail = obj
+    localStorage.setItem('detail', JSON.stringify(obj))
     navigate('/detail/' + obj.addr)
   }
 

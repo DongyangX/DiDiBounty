@@ -79,7 +79,7 @@ function Home() {
   const navigate = useNavigate()
 
   const toDetail = (obj) => {
-    dispatch(setDetail(obj))
+    localStorage.setItem('detail', JSON.stringify(obj))
     navigate('/detail/' + obj.addr)
   }
 
