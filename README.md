@@ -1,22 +1,30 @@
-# React Truffle Box
+# DiDiBounty
 
-This box comes with everything you need to start using Truffle to write, compile, test, and deploy smart contracts, and interact with them from a React app.
+A solidity example use truffle and react. You can release a bounty and the hunter will take part in. By using web3, nobody knows who release the bounty and who join in, that's nice.
 
-## Installation
+## Environment
+Node, truffle or hardhat
 
-First ensure you are in an empty directory.
+## Start
 
-Run the `unbox` command using 1 of 2 ways.
-
+Start the truffle network
 ```sh
-# Install Truffle globally and run `truffle unbox`
-$ npm install -g truffle
-$ truffle unbox react
+$ cd truffle
+$ truffle develop
+```
+Or if use hardhat network, you should modify the networks config in `truffle-config.js`, the port should be `8545`
+
+```js
+development: {
+  host: "127.0.0.1",     // Localhost (default: none)
+  port: 8545,            // Standard Ethereum port (default: none)
+  network_id: "*",       // Any network (default: none)
+}
 ```
 
+Deploy the contracts
 ```sh
-# Alternatively, run `truffle unbox` via npx
-$ npx truffle unbox react
+$ truffle migrate --network development
 ```
 
 Start the react dev server.
@@ -25,15 +33,3 @@ Start the react dev server.
 $ cd client
 $ npm start
 ```
-
-From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
-
-## FAQ
-
-- __How do I use this with Ganache (or any other network)?__
-
-  The Truffle project is set to deploy to Ganache by default. If you'd like to change this, it's as easy as modifying the Truffle config file! Check out [our documentation on adding network configurations](https://trufflesuite.com/docs/truffle/reference/configuration/#networks). From there, you can run `truffle migrate` pointed to another network, restart the React dev server, and see the change take place.
-
-- __Where can I find more resources?__
-
-  This Box is a sweet combo of [Truffle](https://trufflesuite.com) and [Webpack](https://webpack.js.org). Either one would be a great place to start!
