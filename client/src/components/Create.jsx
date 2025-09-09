@@ -34,7 +34,7 @@ function Create() {
 
   const callFactoryCreate = async (e) => {
     if (!state.accounts || state.accounts.length === 0) {
-      // not connect
+      // Not connect
       enqueueSnackbar('Pleace connect wallet first!', {
         variant: 'warning',
       })
@@ -87,28 +87,28 @@ function Create() {
           <TextField
             id="title"
             value={title}
-            label="标题"
+            label="Title"
             variant="outlined"
             onChange={(e) => setTitle(e.target.value)}
           />
           <TextField
             id="amount"
             value={amount}
-            label="悬赏金额(ETH)"
+            label="Reward Amount(ETH)"
             variant="outlined"
             onChange={handleNumberChange}
           />
           <TextField
             id="huntAmount"
             value={huntAmount}
-            label="每次参与金额(ETH)"
+            label="Join Amount(ETH)"
             variant="outlined"
             onChange={handleNumberChange2}
           />
           <TextField
             id="content"
             value={content}
-            label="内容"
+            label="Content"
             multiline
             rows={10}
             onChange={(e) => setContent(e.target.value)}
@@ -129,7 +129,7 @@ function Create() {
             </div>
           )}
           <Button variant="contained" onClick={callFactoryCreate}>
-            提交
+            Submit
           </Button>
         </Stack>
       </Box>

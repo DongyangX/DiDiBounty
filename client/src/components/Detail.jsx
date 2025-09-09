@@ -66,7 +66,7 @@ function Detail() {
       }
       setItems(datas)
     }
-    // 加载数据
+    // Fetch Data
     fetchData()
     setStatus(detail.status)
   }, [state.accounts])
@@ -119,12 +119,12 @@ function Detail() {
     }
 
     try {
-      // 提交悬赏
-      const addr = state.detail.addr
+      // Submit hunting info
+      const addr = detail.addr
       const artifact = require('../contracts/Bounty.json')
       const { abi } = artifact
       const bc = new state.web3.eth.Contract(abi, addr)
-      let joinMoneyWei = state.web3.utils.toWei(state.detail.joinMoney, 'ether')
+      let joinMoneyWei = state.web3.utils.toWei(detail.joinMoney, 'ether')
       let tx = await bc.methods
         .hunt(prove, fileHash)
         .send({ from: state.accounts[0], value: joinMoneyWei })
@@ -153,8 +153,8 @@ function Detail() {
     }
 
     try {
-      // 结束悬赏发放
-      const addr = state.detail.addr
+      // Finish bounty and transfer reward to hunter(the winner)
+      const addr = detail.addr
       const artifact = require('../contracts/Bounty.json')
       const { abi } = artifact
       const bc = new state.web3.eth.Contract(abi, addr)
@@ -193,14 +193,11 @@ function Detail() {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            由
+            Release by
           </Typography>
           <Avatar sx={{ bgcolor: deepOrange[500] }}></Avatar>
           <Typography variant="h6" gutterBottom>
             {detail.addr}
-          </Typography>
-          <Typography variant="h6" gutterBottom>
-            发布
           </Typography>
         </Box>
 
@@ -211,7 +208,7 @@ function Detail() {
                 style={{ width: '500px', height: '500px' }}
                 src={detail.mainPic}
                 loading="lazy"
-                alt="主图"
+                alt="Main Pic"
               />
             </Box>
           </Grid>
@@ -230,11 +227,12 @@ function Detail() {
               </Typography>
               {status === '0' && (
                 <Button variant="contained" onClick={handleJoinDialogOpen}>
-                  参与悬赏
+                  Join Bounty
                 </Button>
               )}
               <Typography>
-                需要缴纳 {detail.joinMoney} ETH 参与,全部ETH将会发放给完成者账户
+                You should pay {detail.joinMoney} ETH to join, all ETH will
+                transfer to winner that who actuality finish the work.
               </Typography>
             </Box>
           </Grid>
@@ -289,16 +287,18 @@ function Detail() {
 
       <React.Fragment>
         <Dialog open={joinOpen} onClose={handleJoinDialogClose}>
-          <DialogTitle>提交悬赏</DialogTitle>
+          <DialogTitle>Submit Hunting</DialogTitle>
           <DialogContent>
-            <DialogContentText>在下面填写说明与证明</DialogContentText>
+            <DialogContentText>
+              Please type in the prove and upload the picture
+            </DialogContentText>
             <form onSubmit={handleSubmit} id="subscription-form">
               <TextField
                 id="prove"
                 value={prove}
                 multiline
                 rows={4}
-                label="说明"
+                label="prove"
                 variant="outlined"
                 onChange={(e) => setProve(e.target.value)}
                 sx={{ width: '100%' }}
@@ -318,9 +318,9 @@ function Detail() {
             </form>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleJoinDialogClose}>取消</Button>
+            <Button onClick={handleJoinDialogClose}>Cancel</Button>
             <Button type="submit" form="subscription-form">
-              确定
+              Submit
             </Button>
           </DialogActions>
         </Dialog>
@@ -331,16 +331,20 @@ function Detail() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">确认发放悬赏</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            Comfirm And Transfer
+          </DialogTitle>
           <DialogContent>
             <DialogContentText color="red" id="alert-dialog-description">
-              注意!!!此操作将发放悬赏到该用户,平台将收取10%悬赏金额作为服务费,请您确认
+              Warning!!! This operation will transfer all the bounty reward to
+              this hunter, and platform will collect 10% ETH service fee. Please
+              confirm!
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleFinishDialogClose}>取消</Button>
+            <Button onClick={handleFinishDialogClose}>Cancel</Button>
             <Button onClick={handleFinish} autoFocus>
-              确定
+              Confirm
             </Button>
           </DialogActions>
         </Dialog>

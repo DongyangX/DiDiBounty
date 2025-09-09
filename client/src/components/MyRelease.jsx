@@ -31,7 +31,7 @@ function MyRelease() {
       let data = allBounties.map(function (addr) {
         return new Promise(async (resolve, reject) => {
           try {
-            // 加载悬赏合约
+            // Load bounty contract
             const bc = new state.web3.eth.Contract(abi, addr)
             let manager = await bc.methods.manager().call()
             let title = await bc.methods.title().call()
@@ -61,7 +61,7 @@ function MyRelease() {
     }
     async function getData() {
       if (!state.accounts || state.accounts.length === 0) {
-        // not connect
+        // Not connect
         enqueueSnackbar('Pleace connect wallet first!', {
           variant: 'warning',
         })
