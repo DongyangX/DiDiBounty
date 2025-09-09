@@ -33,3 +33,7 @@ Start the react dev server.
 $ cd client
 $ npm start
 ```
+
+## Screenshot
+<img width="1440" alt="home" src="https://github.com/DongyangX/DiDiBounty/blob/master/screenshot/home.png?raw=true">
+<img width="1440" alt="detail" src="https://github.com/DongyangX/DiDiBounty/blob/master/screenshot/detail.png?raw=true">
